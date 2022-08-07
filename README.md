@@ -22,3 +22,7 @@ $ docker-compose up
 ```
 $ npm i marked slugify
 ```
+### Install libraries that allow us to override the method that our form passes
+```
+$ npm i method-override
+```
