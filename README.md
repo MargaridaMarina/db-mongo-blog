@@ -14,3 +14,7 @@ $ npm i --save-dev nodemon
 ```
 $ npm run start
 ```
+### Load mongo image
+```
+$ docker-compose up
+```
