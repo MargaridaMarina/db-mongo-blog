@@ -26,3 +26,7 @@ $ npm i marked slugify
 ```
 $ npm i method-override
 ```
+### Install library that sanitizes HTML and get rid of any malicious code and scape HTML caracteres
+```
+$ npm i dompurify jsdom
+```
