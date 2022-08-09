@@ -30,3 +30,7 @@ $ npm i method-override
 ```
 $ npm i dompurify jsdom
 ```
+### Install library that allow us to connect apis
+```
+$ npm i cors
+```
