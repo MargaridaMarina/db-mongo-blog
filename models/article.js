@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const marked = require('marked')
+const { marked } = require('marked')
 const slugify = require('slugify')
 const createDomPurify = require('dompurify')
 const { JSDOM } = require('jsdom')
@@ -10,7 +10,10 @@ const articleSchema = new mongoose.Schema({
     type:String,
     required:true
   },
-  description:{
+  metadescription:{
+    type:String
+  },
+  category:{
     type:String
   },
   markdown:{

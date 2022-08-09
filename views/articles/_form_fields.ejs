@@ -4,8 +4,12 @@
   <input required value="<%= article.title %>" type="text" name="title" id="title" class="form-control">
 </div>
 <div class="form-group">
-  <label for="description">Description</label>
-  <textarea name="description" id="description" class="form-control"><%= article.description %></textarea>
+  <label for="metadescription">Description</label>
+  <textarea name="metadescription" id="metadescription" class="form-control"><%= article.metadescription %></textarea>
+</div>
+<div class="form-group">
+  <label for="category">Categoria</label>
+  <textarea name="category" id="category" class="form-control"><%= article.category %></textarea>
 </div>
 <div class="form-group">
   <label for="markdown">Markdown</label>

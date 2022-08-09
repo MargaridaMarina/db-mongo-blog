@@ -1,5 +1,6 @@
 const express = require('express')
 const Article = require('./../models/article')
+const Category = require('./../models/category')
 const router = express.Router()
 
 router.get('/new', (req, res) => {
@@ -34,14 +35,20 @@ router.delete('/:id', async (req, res) => {
 
 function saveArticleAndRedirect(path){
   return async (req, res) => {
+    console.log({body:req.body})
     let article = req.article
     article.title = req.body.title
-    article.description = req.body.description
+    article.metadescription = req.body.metadescription
     article.markdown = req.body.markdown
+    let category = new Category()
+    category.name = req.body.category
+
     try {
       article = await article.save()
+      category = await category.save()
       res.redirect(`/articles/${article.slug}`)
     } catch(e) {
+      console.error(e)
       res.render(`articles/${path}`, {article:article})
     }
   }
