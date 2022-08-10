@@ -1,6 +1,6 @@
 import express from "express"
-import articles from "../models/article.js"
-import categories from "../models/category.js"
+import posts from "./postsRoutes.js"
+import categories from "./categoriesRoutes.js"
 
 const routes = (app) => {
   app.route('/').get((req,res) => {
@@ -9,7 +9,7 @@ const routes = (app) => {
 
   app.use(
     express.json(),
-    articles,
+    posts,
     categories
   )
 }
