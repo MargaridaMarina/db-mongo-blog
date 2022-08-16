@@ -4,7 +4,7 @@
 // const router = express.Router()
 
 // router.get('/new', (req, res) => {
-//   res.render('articles/new', { article: new Article() })
+//   res.render('articles/new', { article: new Article() }) 
 // })
 
 // router.get('/edit/:id', async(req, res) => {
@@ -102,7 +102,7 @@ class PostController {
     })
   }
 
-  static erasePost = (req, res) => {
+  static deletePost = (req, res) => {
     const id = req.params.id
     posts.findByIdAndDelete(id, (err) => {
       if(!err) {
