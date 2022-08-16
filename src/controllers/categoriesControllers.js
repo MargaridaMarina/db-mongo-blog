@@ -41,7 +41,7 @@ class CategoryController {
     })
   }
 
-  static eraseCategory = (req, res) => {
+  static deleteCategory = (req, res) => {
     const id = req.params.id
     categories.findByIdAndDelete(id, (err) => {
       if(!err) {
