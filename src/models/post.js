@@ -27,7 +27,7 @@ const postSchema = new mongoose.Schema({
   },
   slug:{
     type:String,
-    required:true,
+    // required:true,
     unique:true
   },
   sanitizedHtml:{
