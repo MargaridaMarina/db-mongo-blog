@@ -12,6 +12,7 @@ $ npm i --save-dev nodemon
 ```
 ### Load project
 ```
+$ source .env
 $ npm run start
 ```
 ### Install libraries that allow us to 1. create markdown and turn it to html and 2. convert something into a url friendly slug
