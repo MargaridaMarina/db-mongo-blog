@@ -30,8 +30,6 @@ const postSchema = new mongoose.Schema({
   }
 })
 
-const dompurify = createDOMPurify(new JSDOM().window)
-
 postSchema.pre('validate', function(next){
   if (this.title) {
     this.slug = slugify(this.title, {lower:true, strict:true})
