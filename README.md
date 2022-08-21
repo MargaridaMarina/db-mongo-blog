@@ -2,9 +2,9 @@
 ```
 $ npm init -y
 ```
-### Install a framework to help webdev, a mongodb object modeling and a embedded javascript templating
+### Install a framework to help webdev and a mongodb object modeling
 ```
-$ npm i express mongoose ejs
+$ npm i express mongoose 
 ```
 ### Install dev dependencies
 ```
@@ -14,21 +14,13 @@ $ npm i --save-dev nodemon
 ```
 $ npm run start
 ```
-### Load mongo image
-```
-$ docker-compose up
-```
 ### Install libraries that allow us to 1. create markdown and turn it to html and 2. convert something into a url friendly slug
 ```
-$ npm i marked slugify
+$ npm i marked slugify 
 ```
 ### Install libraries that allow us to override the method that our form passes
 ```
 $ npm i method-override
-```
-### Install library that sanitizes HTML and get rid of any malicious code and scape HTML caracteres
-```
-$ npm i dompurify jsdom
 ```
 ### Install library that allow us to connect apis
 ```
