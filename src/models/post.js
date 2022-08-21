@@ -1,10 +1,5 @@
 import mongoose from "mongoose";
-import { marked } from "marked";
 import slugify from "slugify";
-
-// const createDomPurify = require('dompurify')
-// const { JSDOM } = require('jsdom')
-// const dompurify = createDomPurify(new JSDOM().window)
 
 const postSchema = new mongoose.Schema({
   title:{
@@ -35,13 +30,12 @@ const postSchema = new mongoose.Schema({
   }
 })
 
+const dompurify = createDOMPurify(new JSDOM().window)
+
 postSchema.pre('validate', function(next){
   if (this.title) {
     this.slug = slugify(this.title, {lower:true, strict:true})
   }
-  // if (this.markdown) {
-  //   this.sanitizedHtml = dompurify.sanitize(marked(this.markdown))
-  // }
   next()
 })
 
