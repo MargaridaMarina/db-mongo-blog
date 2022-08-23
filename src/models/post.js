@@ -12,6 +12,9 @@ const postSchema = new mongoose.Schema({
   category:{
     type:String
   },
+  image:{
+    type:String
+  },
   markdown:{
     type:String,
     required:true
