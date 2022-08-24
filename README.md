@@ -15,13 +15,9 @@ $ npm i --save-dev nodemon
 $ source .env
 $ npm run start
 ```
-### Install libraries that allow us to 1. create markdown and turn it to html and 2. convert something into a url friendly slug
+### Install libraries that allow us to convert something into a url friendly slug
 ```
-$ npm i marked slugify 
-```
-### Install libraries that allow us to override the method that our form passes
-```
-$ npm i method-override
+$ npm i slugify 
 ```
 ### Install library that allow us to connect apis
 ```
