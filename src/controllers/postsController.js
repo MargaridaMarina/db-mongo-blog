@@ -1,4 +1,5 @@
-import posts from "../models/post.js"
+import categories from '../models/category.js'
+import posts from '../models/post.js'
 
 class PostController {
   static listPosts = (req, res) => {
@@ -23,13 +24,30 @@ class PostController {
   }
 
   static registerPost = (req, res) => {
-    let post = new posts(req.body)
-    post.save((err) => {
-      if(err) {
-        res.status(500).send({message: `${err.message} - Falha ao registrar o post!`})
-      } else {
-        res.status(201).send(post.toJSON())
-      }
+    const data = req.body
+    const { category, ...postInfos } = data
+
+    let cat = new categories({
+      name: category
+    })
+    
+    cat.save().then(data => {
+      console.log(data)
+
+      let post = new posts({
+        category: data._id,
+        ...postInfos
+      })
+
+      post.save(err => {
+        if (err) {
+          res
+            .status(500)
+            .send({ message: `${err.message} - Falha ao registrar o post!` })
+        } else {
+          res.status(201).send(post.toJSON())
+        }
+      })
     })
   }
 
