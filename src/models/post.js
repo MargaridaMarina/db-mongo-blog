@@ -1,41 +1,45 @@
-import mongoose from "mongoose";
-import slugify from "slugify";
+import mongoose from 'mongoose'
+import slugify from 'slugify'
 
 const postSchema = new mongoose.Schema({
-  title:{
-    type:String,
-    required:true
+  id: {
+    type: String
   },
-  metadescription:{
-    type:String
+  title: {
+    type: String,
+    required: true
   },
-  category:{
-    type:String
+  metadescription: {
+    type: String
   },
-  image:{
-    type:String
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'categories'
   },
-  markdown:{
-    type:String,
-    required:true
+  image: {
+    type: String
   },
-  createdAt:{
-    type:Date,
+  markdown: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
     default: Date.now
   },
-  slug:{
-    type:String,
+  slug: {
+    type: String,
     // required:true,
-    unique:true
+    unique: true
   },
-  sanitizedHtml:{
-    type:String
+  sanitizedHtml: {
+    type: String
   }
 })
 
-postSchema.pre('validate', function(next){
+postSchema.pre('validate', function (next) {
   if (this.title) {
-    this.slug = slugify(this.title, {lower:true, strict:true})
+    this.slug = slugify(this.title, { lower: true, strict: true })
   }
   next()
 })
