@@ -27,32 +27,28 @@ class PostController {
       })
   }
 
-  static registerPost = (req, res) => {
+  static registerPost = async (req, res) => {
     const data = req.body
     const { category, ...postInfos } = data
 
-    let cat = new categories({
-      name: category
-    })
+    try {
+      const cat = new categories({
+        name: category
+      })
 
-    cat.save().then(data => {
-      console.log(data)
-
-      let post = new posts({
-        category: data._id,
+      const savedCategory = await cat.save()
+      const post = new posts({
+        category: savedCategory._id,
         ...postInfos
       })
 
-      post.save(err => {
-        if (err) {
-          res
-            .status(500)
-            .send({ message: `${err.message} - Falha ao registrar o post!` })
-        } else {
-          res.status(201).send(post.toJSON())
-        }
-      })
-    })
+      await post.save()
+      res.status(201).send(post.toJSON())
+    } catch (error) {
+      res
+        .status(500)
+        .send({ message: `${err.message} - Falha ao registrar o post!` })
+    }
   }
 
   static updatePost = (req, res) => {
