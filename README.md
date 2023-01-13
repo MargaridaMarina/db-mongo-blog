@@ -2,9 +2,9 @@
 ```
 $ npm init -y
 ```
-### Install a framework to help webdev and a mongodb object modeling
+### Install dependencies
 ```
-$ npm i express mongoose 
+$ npm i 
 ```
 ### Install dev dependencies
 ```
@@ -14,12 +14,4 @@ $ npm i --save-dev nodemon
 ```
 $ source .env
 $ npm run start
-```
-### Install libraries that allow us to convert something into a url friendly slug
-```
-$ npm i slugify 
-```
-### Install library that allow us to connect apis
-```
-$ npm i cors
 ```
