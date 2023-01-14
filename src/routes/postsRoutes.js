@@ -6,6 +6,7 @@ const router = express.Router()
 router
   .get("/posts", PostController.listPosts)
   .get("/posts/:id", PostController.listPostsById)
+  .get("/posts/categorias/:id", PostController.listPostsByCategoryId)
   .post("/posts", PostController.registerPost)
   .put("/posts/:id", PostController.updatePost)
   .delete("/posts/:id", PostController.deletePost)

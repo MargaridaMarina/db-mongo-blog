@@ -1,59 +1,74 @@
-import categories from '../models/category.js'
-import posts from '../models/post.js'
+import categoriesModel from '../models/category.js'
+import postsModel from '../models/post.js'
 
 class PostController {
   static listPosts = (req, res) => {
-    posts
+    postsModel
       .find()
-      .populate('category')
-      .exec((err, posts) => {
-        res.status(200).json(posts)
+      .populate('postCategory')
+      .exec((err, postData) => {
+        // console.log(postData)
+        res.status(200).json(postData)
       })
   }
 
   static listPostsById = (req, res) => {
     const id = req.params.id
-    posts
+    postsModel
       .findById(id)
-      .populate('category', 'name')
-      .exec((err, posts) => {
+      .populate('postCategory', 'categoryName')
+      .exec((err, postData) => {
         if (err) {
           res
             .status(400)
             .send({ message: `${err.message} - Id do post não localizado.` })
         } else {
-          res.status(200).send(posts)
+          res.status(200).send(postData)
+        }
+      })
+  }
+
+  static listPostsByCategoryId = (req, res) => {
+    const id = req.params.id
+    postsModel  
+      .find({postCategory: id})
+      .populate('postCategory', 'categoryName')
+      .exec((err, postData) => {
+        if (err) {
+          res
+            .status(400)
+            .send({ message: `${err.message} - Id do post não localizado.` })
+        } else {
+          res.status(200).send(postData)
         }
       })
   }
 
   static registerPost = async (req, res) => {
     const data = req.body
-    const { category, ...postInfos } = data
+    const { postCategory, ...postInfos } = data
 
     try {
-      const cat = new categories({
-        name: category
+      const cat = new categoriesModel({
+        categoryName: postCategory
       })
-
       const savedCategory = await cat.save()
-      const post = new posts({
-        category: savedCategory._id,
+      const post = new postsModel({
+        postCategory: savedCategory._id,
         ...postInfos
       })
-
       await post.save()
       res.status(201).send(post.toJSON())
-    } catch (error) {
-      res
-        .status(500)
-        .send({ message: `${err.message} - Falha ao registrar o post!` })
+    } catch (err) {
+        res
+          .status(500)
+          .send({ message: `${err.message} - Falha ao registrar o post!` })
     }
   }
 
   static updatePost = (req, res) => {
     const id = req.params.id
-    posts.findByIdAndUpdate(id, { $set: req.body }, err => {
+    postsModel.findByIdAndUpdate(id, { $set: req.body }, err => {
       if (!err) {
         res.status(200).send({ message: 'Post atualizado com sucesso!' })
       } else {
@@ -64,7 +79,7 @@ class PostController {
 
   static deletePost = (req, res) => {
     const id = req.params.id
-    posts.findByIdAndDelete(id, err => {
+    postsModel.findByIdAndDelete(id, err => {
       if (!err) {
         res.status(200).send({ message: 'Post removido com sucesso!' })
       } else {
