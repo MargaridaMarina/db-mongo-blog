@@ -1,6 +1,6 @@
 import express from "express"
-import posts from "./postsRoutes.js"
-import categories from "./categoriesRoutes.js"
+import postsModel from "./postsRoutes.js"
+import categoriesModel from "./categoriesRoutes.js"
 
 const routes = (app) => {
   app.route('/').get((req,res) => {
@@ -9,8 +9,8 @@ const routes = (app) => {
 
   app.use(
     express.json(),
-    posts,
-    categories
+    postsModel,
+    categoriesModel
   )
 }
 

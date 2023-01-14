@@ -12,9 +12,13 @@ const postSchema = new mongoose.Schema({
   metadescription: {
     type: String
   },
-  category: {
+  postCategory: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'categories'
+    ref: 'categoriesModel'
+  },
+  postSubCategory: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'categoriesModel'
   },
   image: {
     type: String
@@ -44,6 +48,6 @@ postSchema.pre('validate', function (next) {
   next()
 })
 
-const posts = mongoose.model('posts', postSchema)
+const postsModel = mongoose.model('postsModel', postSchema)
 
-export default posts
+export default postsModel

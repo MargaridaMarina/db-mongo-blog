@@ -1,38 +1,38 @@
-import categories from "../models/category.js"
+import categoriesModel from "../models/category.js"
 
 class CategoryController {
 
   static listCategories = (req, res) => {
-    categories.find((err, categories) => {
-      res.status(200).json(categories)
+    categoriesModel.find((err, categoryData) => {
+      res.status(200).json(categoryData)
     })
   }
 
   static listCategoriesById = (req, res) => {
     const id = req.params.id
-    categories.findById(id, (err, categories) => {
+    categoriesModel.findById(id, (err, categoryData) => {
       if(err) {
         res.status(400).send({message: `${err.message} - Id da categoria não localizado.`})
       } else {
-        res.status(200).send(categories)
+        res.status(200).send(categoryData)
       }
     })
   }
 
   static registerCategory = (req, res) => {
-    let category = new categories(req.body)
-    category.save((err) => {
+    let categoryData = new categoriesModel(req.body)
+    categoryData.save((err) => {
       if(err) {
         res.status(500).send({message: `${err.message} - Falha ao registrar a categoria!`})
       } else {
-        res.status(201).send(category.toJSON())
+        res.status(201).send(categoryData.toJSON())
       }
     })
   }
 
   static updateCategory = (req, res) => {
     const id = req.params.id
-    categories.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+    categoriesModel.findByIdAndUpdate(id, {$set: req.body}, (err) => {
       if(!err) {
         res.status(200).send({message: 'Categoria atualizada com sucesso!'})
       } else {
@@ -43,7 +43,7 @@ class CategoryController {
 
   static deleteCategory = (req, res) => {
     const id = req.params.id
-    categories.findByIdAndDelete(id, (err) => {
+    categoriesModel.findByIdAndDelete(id, (err) => {
       if(!err) {
         res.status(200).send({message: 'Categoria removida com sucesso!'})
       } else {
